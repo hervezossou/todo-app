@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 // Hook personnalisé pour éviter le problème de Fast Refresh
 export const useAuth = () => {
