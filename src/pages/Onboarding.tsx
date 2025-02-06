@@ -20,7 +20,7 @@ export default function Onboarding() {
                 />
                 <FeatureCard icon={FiFlag} title="Prioritize" description="Focus on what matters most." />
             </div>
-            <Link to="/register" className="mt-6 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600">Get Started</Link>
+            <Link to="/register" className="mt-6 w-36 p-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600">Get Started</Link>
         </div>
     )
 };

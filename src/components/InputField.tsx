@@ -4,10 +4,23 @@ interface InputFieldProps {
     label: string;
     type: string;
     placeholder: string;
+    value: string;
+    validate: (value: string) => boolean | string;
+    onChange: (value: string) => void;
 }
 
-export default function InputField({ label, type, placeholder }: InputFieldProps) {
-    const [value, setValue] = useState("")
+export default function InputField({ label, type, placeholder, value, validate, onChange }: InputFieldProps) {
+    const [error, setError] = useState("")
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value
+        onChange(newValue)
+
+        // Validate input and set error message
+        if (validate) {
+            const errorMessage = validate(newValue);
+            setError(typeof errorMessage === 'string' ? errorMessage : "");
+        }
+    }
 
     return (
         <div className="flex flex-col gap-2">
@@ -17,9 +30,11 @@ export default function InputField({ label, type, placeholder }: InputFieldProps
                 name={type}
                 value={value}
                 placeholder={placeholder}
+                aria-label={label}
                 className="w-full p-3 bg-neutral-100 rounded-md focus:outline-blue-500" 
-                onChange={(e) => setValue(e.target.value)}
+                onChange={handleChange}
             />
+            {error && <p className="text-xs italic text-red-400">{error}</p>}
         </div>
     )
 }
