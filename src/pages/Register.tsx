@@ -3,24 +3,42 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { validateEmail } from "../utils/validateEmail";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Register() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
-    /*const userData = {
-        "email": email,
-        "password": password,
-        "confirmedPassword": confirmPassword,
-    }
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+    const [message, setMessage] = useState("")
 
-    console.log("User: ", JSON.stringify(userData))*/
+    const { register } = useAuth()
+
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      setError(null)
+      setMessage("")
+      setLoading(true)
+
+      
+      if (email !== "" && password !== "") {
+        try {
+          await register(email, password)
+          setMessage("Check your mail for confirmation.")
+        } catch (err) {
+          setError((err as Error).message)
+        } finally {
+          setLoading(false)
+        }
+      }
+    }
 
     return (
         <section className="flex flex-col items-center justify-center min-h-screen bg-neutral-800 p-6">
             <h2 className="mb-8 text-2xl font-semibold text-neutral-50 md:text-3xl lg:text-4xl">Create an account</h2>
-            <form className="flex flex-col gap-6 w-full max-w-sm">
+            <form className="flex flex-col gap-6 w-full max-w-sm" onSubmit={handleRegister}>
               <InputField 
                 type="email" 
                 label="Email"
@@ -45,17 +63,24 @@ export default function Register() {
                 onChange={setConfirmPassword}
                 validate={(value) => value !== password ? "Passwords do not match" : ""} 
               />
-              <Button label="Sign up" ariaLabel="Create your account" />
+              <Button 
+                label={loading? "Signing up..." : "Sign up"} 
+                ariaLabel="Create your account" 
+                disabled={loading}
+              />
           </form>
+          {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
+          {message && <p className="mt-4 text-sm text-green-500">{message}</p>}
+
           <p className="mt-6 text-sm text-neutral-50 md:text-base">
             Already have an account?<span> </span>
             <Link 
                 to="/login" 
                 className="text-sm text-left text-blue-500 hover:underline md:text-base"
             >
-                    Sign in
+                Sign in
             </Link>
-        </p>
+          </p>
         </section>
     );
 };

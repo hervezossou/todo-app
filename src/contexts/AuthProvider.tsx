@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
     }, []);
 
-    // Fonctiond d'inscription 
+    // Fonction d'inscription 
     const register = async (email: string, password: string) => {
         const { data, error } = await supabase.auth.signUp({email, password});
         if (error) {
