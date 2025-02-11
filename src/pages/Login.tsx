@@ -3,7 +3,7 @@ import Button from "../components/Button"
 import { Link, useNavigate } from "react-router"
 import { useAuth } from "../hooks/useAuth"
 import { validateEmail } from "../utils/validateEmail"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Login() {
     const [email, setEmail] = useState("")
@@ -12,8 +12,14 @@ export default function Login() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
-    const { login } = useAuth()
+    const { login, user } = useAuth()
     const navigate = useNavigate()
+
+    /*useEffect(() => {
+        if (user) {
+            navigate("dashboard")
+        }
+    }, [user, navigate])*/
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
