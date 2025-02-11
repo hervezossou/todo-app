@@ -15,11 +15,11 @@ export default function Login() {
     const { login, user } = useAuth()
     const navigate = useNavigate()
 
-    /*useEffect(() => {
+    useEffect(() => {
         if (user) {
-            navigate("dashboard")
+            navigate("/dashboard")
         }
-    }, [user, navigate])*/
+    }, [user, navigate])
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

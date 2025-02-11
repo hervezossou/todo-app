@@ -1,8 +1,8 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { validateEmail } from "../utils/validateEmail";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 export default function Register() {
@@ -14,7 +14,14 @@ export default function Register() {
     const [error, setError] = useState<string | null>(null)
     const [message, setMessage] = useState("")
 
-    const { register } = useAuth()
+    const navigate = useNavigate() 
+    const { register, user } = useAuth()
+
+    useEffect(() => {
+        if (user) {
+        navigate("/dashboard")
+      }
+    }, [user, navigate])
 
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
