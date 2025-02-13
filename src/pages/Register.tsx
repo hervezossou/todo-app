@@ -45,7 +45,10 @@ export default function Register() {
     return (
         <section className="flex flex-col items-center justify-center min-h-screen bg-neutral-800 p-6">
             <h2 className="mb-8 text-2xl font-semibold text-neutral-50 md:text-3xl lg:text-4xl">Create an account</h2>
-            <form className="flex flex-col gap-6 w-full max-w-sm" onSubmit={handleRegister}>
+            <form 
+              className="flex flex-col gap-6 w-full max-w-sm bg-neutral-400/10 px-8 py-10 rounded-3xl" 
+              onSubmit={handleRegister}
+            >
               <InputField 
                 type="email" 
                 label="Email"

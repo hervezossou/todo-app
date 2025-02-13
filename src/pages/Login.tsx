@@ -41,7 +41,10 @@ export default function Login() {
     return (
         <section className="flex flex-col items-center justify-center min-h-screen bg-neutral-800 p-6">
             <h2 className="mb-8 text-xl font-semibold text-neutral-50 md:text-3xl">Sign in to your account</h2>
-            <form className="flex flex-col gap-6 w-full max-w-sm" onSubmit={handleLogin}>
+            <form 
+                className="flex flex-col gap-6 w-full max-w-sm bg-neutral-400/10 px-8 py-10 rounded-3xl" 
+                onSubmit={handleLogin}
+            >
                 <InputField 
                     type="email" 
                     label="Email"
