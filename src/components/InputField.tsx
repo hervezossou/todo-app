@@ -24,8 +24,14 @@ export default function InputField({ label, type, placeholder, value, validate, 
 
     return (
         <div className="flex flex-col gap-2">
-            <label className="text-neutral-100 text-sm font-semibold md:text-base">{label}</label>
+            <label 
+                className="text-neutral-100 text-sm font-semibold md:text-base" 
+                htmlFor={type}
+            >
+                {label}
+            </label>
             <input 
+                id={type}
                 type={type}
                 name={type}
                 value={value}
