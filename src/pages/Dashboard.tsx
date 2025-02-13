@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import supabase from "../services/supabase";
-import IconButton from "../components/atoms/IconButton";
-import { LuTrash2, LuCheck } from "react-icons/lu";
-import { MdEdit } from "react-icons/md";
+import TaskActions from "../components/molecules/TaskActions";
 
 export default function Dashboard() {
     const { logout } = useAuth()
@@ -27,30 +25,7 @@ export default function Dashboard() {
             <button className="text-red-600 hover:underline hover:cursor-pointer" onClick={logout}>
                 Log out
             </button>
-            <div className="flex gap-4">
-            <IconButton
-                icon={<MdEdit />}
-                ariaLabel="Edit Task"
-                variant="edit"
-                size="large"
-                onClick={() => console.log("Edit clicked")}
-            />
-            <IconButton
-                icon={<LuTrash2 />}
-                ariaLabel="Delete Task"
-                variant="delete"
-                size="large"
-                onClick={() => console.log("Delete clicked")}
-                isDisabled={false}
-            />
-            <IconButton
-                icon={<LuCheck />}
-                ariaLabel="Mark as Done"
-                variant="complete"
-                size="large"
-                onClick={() => console.log("Task completed")}
-            />
-        </div>
+            <TaskActions />
         </main>
     )
 }
