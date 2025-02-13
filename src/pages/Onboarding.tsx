@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import FeatureCard from "../components/FeatureCard"
+import FeatureCard from "../components/molecules/FeatureCard"
 import { FiFilter, FiLayers, FiFlag } from "react-icons/fi"
 
 export default function Onboarding() {

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
+import InputField from "../components/atoms/InputField";
+import Button from "../components/atoms/Button";
 import { validateEmail } from "../utils/validateEmail";
 import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";

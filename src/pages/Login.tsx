@@ -1,5 +1,5 @@
-import InputField from "../components/InputField"
-import Button from "../components/Button"
+import InputField from "../components/atoms/InputField"
+import Button from "../components/atoms/Button"
 import { Link, useNavigate } from "react-router"
 import { useAuth } from "../hooks/useAuth"
 import { validateEmail } from "../utils/validateEmail"
