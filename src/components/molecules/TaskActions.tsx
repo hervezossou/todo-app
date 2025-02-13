@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import IconButton from "../atoms/IconButton"
 import { LuTrash2, LuCheck } from "react-icons/lu";
 import { MdEdit } from "react-icons/md";
@@ -17,7 +18,13 @@ export default function TaskActions({
     isDeleteDisabled = false, 
     className = ""}: TaskActionsProps) {
      return (
-        <div className={`w-max flex items-center gap-5 p-1 border border-neutral-300 rounded-4xl ${className}`}>
+        <motion.div 
+            initial={{opacity: 0, size: 0.9}}
+            animate={{opacity: 1, size: 1}}
+            exit={{opacity: 0, size: 0.9}}
+            transition={{duration: 0.3}}
+            className={`w-max flex items-center gap-5 p-1 border border-neutral-300 rounded-4xl shadow-lg ${className}`}
+        >
             <IconButton
                 icon={<MdEdit />}
                 ariaLabel="Edit the selected task"
@@ -40,6 +47,6 @@ export default function TaskActions({
                 size="medium"
                 onClick={onComplete}
             />
-        </div>
+        </motion.div>
      )
 }
